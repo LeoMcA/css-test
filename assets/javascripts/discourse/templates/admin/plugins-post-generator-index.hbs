@@ -1,0 +1,30 @@
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>User</th>
+      <th>Category</th>
+      <th>Topic Title</th>
+      <th>Topic ID</th>
+      <th>Post</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |post|}}
+      <tr>
+        <td>{{#link-to 'adminPlugins.post-generator.edit' post}}{{post.datetime}}{{/link-to}}</td>
+        <td><a href='{{baseuri}}/users/{{post.user.username}}/activity' data-user-card='{{post.user.username}}'>{{avatar post.user imageSize='tiny'}} {{post.user.username}}</a></td>
+        <td>{{category-link post.category allowUncategorized='true'}}</td>
+        <td>{{post.topic_title}}</td>
+        <td>{{post.topic_id}}</td>
+        <td>{{summary post.raw}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+<div class='buttons'>
+  <button {{action 'new'}} class='btn btn-primary'>{{fa-icon 'plus'}}{{i18n 'admin.groups.new'}}</button>
+  {{plugins-post-generator-upload}}
+  <button {{action 'refresh'}} class='btn'>{{fa-icon 'refresh'}}{{i18n 'admin.groups.refresh'}}</button>
+  <span class="status {{unless status 'hidden'}}">{{status}}</span>
+</div>
