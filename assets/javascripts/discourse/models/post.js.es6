@@ -5,7 +5,7 @@ const Post = Ember.Object.extend({
     return {
       datetime: this.get('datetime'),
       username: this.get('user.username'),
-      category_id: this.get('category.id'),
+      category_id: this.get('category_id'),
       topic_title: this.get('topic_title'),
       topic_id: this.get('topic_id'),
       raw: this.get('raw')

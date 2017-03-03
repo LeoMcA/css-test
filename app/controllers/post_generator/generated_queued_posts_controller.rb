@@ -46,7 +46,11 @@ module PostGenerator
     private
 
     def generated_queued_post_params
-      params[:category_id] = 1 if params[:category_id].to_i == 0
+      if params[:topic_title].blank?
+        params[:category_id] = nil
+      elsif params[:category_id].to_i == 0
+        params[:category_id] = 1
+      end
       params.permit(:datetime,
                     :username,
                     :category_id,

@@ -5,6 +5,8 @@ module PostGenerator
 
     attr_accessor :username
 
+    default_scope { order datetime: :asc }
+
     before_validation do
       user = User.find_by_username(self.username)
       unless user
@@ -16,14 +18,15 @@ module PostGenerator
     end
 
     def self.new_from_csv(row)
-      category = Category.find_by_slug(row[2])
-      category_id = category.nil? ? -1 : category.id
+      row[3] = nil if row[3].blank?
+      category = Category.find_by_slug(row[2], row[3])
+      category_id = category.nil? ? nil : category.id
       generated_queued_post = self.new(:datetime => row[0],
                :username => row[1],
                :category_id => category_id,
-               :topic_title => row[3],
-               :topic_id => row[4],
-               :raw => row[5])
+               :topic_title => row[4],
+               :topic_id => row[5],
+               :raw => row[6])
       generated_queued_post.save!
     end
 

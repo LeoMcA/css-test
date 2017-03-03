@@ -1,6 +1,6 @@
 # name: post-generator
 # about: Discourse plugin which generates posts
-# version: 0.0.1
+# version: 0.0.2
 # authors: Leo McArdle
 
 load File.expand_path('../lib/post_generator.rb', __FILE__)
