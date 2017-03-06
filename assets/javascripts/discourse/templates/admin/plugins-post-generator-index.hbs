@@ -17,7 +17,7 @@
         <td>{{category-link post.category allowUncategorized='true'}}</td>
         <td>{{post.topic_title}}</td>
         <td>{{post.topic_id}}</td>
-        <td>{{summary post.raw}}</td>
+        <td>{{post-generator-summary post.raw}}</td>
       </tr>
     {{/each}}
   </tbody>
