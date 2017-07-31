@@ -46,6 +46,7 @@ module PostGenerator
     private
 
     def generated_queued_post_params
+      params[:datetime] = DateTime.parse(params[:datetime]).iso8601
       if params[:topic_title].blank?
         params[:category_id] = nil
       elsif params[:category_id].to_i == 0
